@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey form</title>
+    <style>
+.container{
+    background-image: linear-gradient(ivory,yellow);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    height:auto;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    
+}
+.title{
+    text-align: center;
+}
+.box{
+    border: 2px solid rgb(0, 0, 0);
+    height: fit-content;
+    
+}
+td{
+    padding: 10px;
+}
+/* .tab2{
+    border: 2px solid black;
+    
+} */
+.table2div{
+    margin-top: 50px;
+   height: auto;  
+}
+.table2{
+border: 2px solid black;
+border-collapse: collapse;
+}
+.box2{
+    border: 2px solid rgb(228, 18, 18);
+    height: fit-content;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="box">
+            <form id="myForm" >
+                <table>
+                    <tr>
+                        <td colspan="2"><h1 style="text-align: center;">Student details</h1></td>
+                    </tr>
+                    <tr>
+                        <td >First Name</td>
+                        <td >
+                            <input type="text" name="Firstname" id="Firstname"  value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>
+                            <input type="text" name="Lastname" id="Lastname" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>
+                            <textarea name="Address" id="Address" cols="30" rows="5"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pincode</td>
+                        <td><input type="text" name="Pincode" id="Pincode" value=""/></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>
+                            <label for="Male">Male</label> 
+                            <input type="radio" name="Gender" id="Male" value="Male">&nbsp;&nbsp;
+                            <label for="Female">Female</label> 
+                            <input type="radio" name="Gender" id="Female" value="Female"/>&nbsp;&nbsp;
+                            <label for="Transgender">Transgender</label> 
+                            <input type="radio" name="Gender" id="Transgender" value="Female"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Choice of Food<br>(Must select two)</td>
+                        <td>
+                            <label for="Fruits">Fruits</label>
+                            <input type="checkbox" name="Choice of Food" id="Fruits" value="Fruits"/>&nbsp;&nbsp;
+                            <label for="Vegetables">Vegetables</label>
+                            <input type="checkbox" name="Choice of Food" id="Vegetables" value="Vegetables" />&nbsp;&nbsp;
+                            <label for="Grains">Grains</label>
+                            <input type="checkbox" name="Choice of Food" id="Grains" value="Grains"/>&nbsp;&nbsp;
+                            <label for="Protein Foods">Protein Foods</label>
+                            <input type="checkbox" name="Choice of Food" id="Protein Foods" value="Protein Foods" />&nbsp;&nbsp;
+                            <label for="Dairy">Dairy</label>
+                            <input type="checkbox" name="Choice of Food" id="Dairy" value="Dairy"/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>
+                           <input type="text" name="State" id="State" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td>
+                           <input type="text" name="Country" id="Country" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="sub" colspan="2" style="text-align: center;"><input type="submit"></td>
+                    </tr>
+                   
+                    
+                </table>
+            </form>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script>
+const container = document.querySelector('.container');
+
+const table2div = document.createElement('div');
+table2div.setAttribute('class','table2div');
+container.appendChild(table2div);
+
+const table = document.createElement('table');
+        table.setAttribute('class','table2');
+        table2div.appendChild(table);
+
+var row = table.insertRow();
+
+var firstnamecell = row.insertCell(0);
+var lastnamecell = row.insertCell(1);
+var addresscell = row.insertCell(2);
+var pincell = row.insertCell(3);
+var gendercell = row.insertCell(4);
+var cofcell = row.insertCell(5);
+var statecell = row.insertCell(6);
+var countrycell = row.insertCell(7);
+
+firstnamecell.innerText = 'FIRST NAME'
+lastnamecell.innerText  = 'LAST NAME'
+addresscell.innerText  = 'ADDRESS'
+pincell.innerText  = 'PIN'
+gendercell.innerText  = 'GENDER'
+cofcell.innerText  = 'COF'
+statecell.innerText  = 'STATE'
+countrycell.innerText  = 'COUNTRY'
+
+
+
+
+const submitInput = document.getElementById('sub');
+submitInput.addEventListener('click',function(e){
+
+e.preventDefault();
+
+let fname = document.getElementById('Firstname').value;
+let lname = document.getElementById('Lastname').value;
+let address = document.getElementById('Address').value;
+let pin = document.getElementById('Pincode').value;
+if(document.getElementById('Male').checked){
+    var gender = document.getElementById('Male').value; 
+}
+else if(document.getElementById('Female').checked){
+    var gender = document.getElementById('Female').value;
+}
+else{
+    var gender = document.getElementById('Transgender').value;
+}
+
+const checkboxes = document.querySelectorAll('input[name="Choice of Food"]:checked');
+let cof = [];
+checkboxes.forEach((checkbox) => {
+    cof.push(checkbox.value);
+});
+
+
+let state = document.getElementById('State').value;
+let country = document.getElementById('Country').value;
+console.log(fname,lname,address,pin,gender,cof,state,country);
+
+
+const tableadd = document.querySelector('.table2');
+
+var rowadd = tableadd.insertRow();
+
+var firstnamecelladd = rowadd.insertCell(0);
+var lastnamecelladd = rowadd.insertCell(1);
+var addresscelladd = rowadd.insertCell(2);
+var pincelladd = rowadd.insertCell(3);
+var gendercelladd = rowadd.insertCell(4);
+var cofcelladd = rowadd.insertCell(5);
+var statecelladd = rowadd.insertCell(6);
+var countrycelladd = rowadd.insertCell(7);
+
+firstnamecelladd.innerText = fname;
+lastnamecelladd.innerText  = lname;
+addresscelladd.innerText  = address;
+pincelladd.innerText  = pin;
+gendercelladd.innerText  = gender;
+cofcelladd.innerText  = cof;
+statecelladd.innerText  = state;
+countrycelladd.innerText  = country;
+
+setTimeout(function reset(){
+    document.getElementById("myForm").reset();
+},1000)
+
+})
+
+
+// setInterval((x) => {
+//  var box = document.querySelector('.box');  
+//  box.setAttribute('class','box2') 
+// },2000);
+
+
+
+
+    </script>
+    
+</body>
+</html>
